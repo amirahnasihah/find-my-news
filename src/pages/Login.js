@@ -1,4 +1,5 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -28,7 +29,9 @@ export default function Login() {
           autoComplete="current-password"
         />
       </div>
-      <Button variant="contained">Login</Button>
+      <Link to="/home">
+        <Button variant="contained">Login</Button>
+      </Link>
     </Box>
   );
 }

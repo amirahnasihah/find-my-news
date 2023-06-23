@@ -1,42 +1,60 @@
-import { Box, Grid, Paper } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Header from "../components/Header";
-import styled from "@emotion/styled";
 import MyFavouritesPanel from "../components/MyFavouritesPanel";
 import DisplayResults from "../components/DisplayResults";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  // SEARCH BAR STATE
   const [keyword, setKeyword] = useState("");
-  // FAVORITES STATE
-  const [myFavourites, setmyFavourites] = useState([]);
-  // PAGINATION STATE
-  const [page, setPage] = useState(null);
+  const LOCALS_STORAGE_KEY = "my-favourites";
+  const [myFavourites, setMyFavourites] = useState(
+    JSON.parse(localStorage.getItem(LOCALS_STORAGE_KEY)) ?? []
+  );
+  const [page, setPage] = useState(4);
 
-  // Search function
-  // - for input text field onchange
   const handleSetKeyword = (e) => {
     setKeyword(e.target.value);
     console.log("handleSetKeyword:", e.target.value);
   };
 
-  // Favorite function
-  const clearMyFavourites = () => {};
+  useEffect(() => {
+    getLocalStorage();
+  }, []);
 
-  const updateMyFavourites = () => {};
+  const getLocalStorage = () => {
+    const favouritesFromStorage = localStorage.getItem(LOCALS_STORAGE_KEY);
 
-  // Paginations function
-  const onLoadMore = () => {};
+    if (favouritesFromStorage) {
+      const parsedFavourites = JSON.parse(favouritesFromStorage);
+      setMyFavourites(parsedFavourites);
+    }
+  };
+
+  const clearMyFavourites = () => {
+    setMyFavourites([]);
+
+    localStorage.removeItem(LOCALS_STORAGE_KEY);
+  };
+
+  const updateMyFavourites = (news) => {
+    console.log("updateMyFavourites");
+  };
+
+  const onLoadMore = () => {
+    setPage((prevPage) => prevPage + 8);
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} md={12}>
           <Header keyword={keyword} handleSetKeyword={handleSetKeyword} />
         </Grid>
+
         <Grid
           item
-          xs={3}
+          xs={4}
+          md={3}
           style={{
             backgroundColor: "white",
             overflowY: "scroll",
@@ -48,7 +66,8 @@ export default function Home() {
             clearMyFavourites={clearMyFavourites}
           />
         </Grid>
-        <Grid item xs={9}>
+
+        <Grid item xs={8} md={9}>
           <DisplayResults
             page={page}
             keyword={keyword}
