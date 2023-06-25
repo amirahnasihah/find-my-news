@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import MyFavouritesPanel from "../components/MyFavouritesPanel";
 import DisplayResults from "../components/DisplayResults";
 import { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [keyword, setKeyword] = useState("");
@@ -74,6 +75,10 @@ export default function Home() {
             updateMyFavourites={updateMyFavourites}
             onLoadMore={onLoadMore}
           />
+        </Grid>
+
+        <Grid item xs={12} md={12}>
+          <Footer />
         </Grid>
       </Grid>
     </Box>

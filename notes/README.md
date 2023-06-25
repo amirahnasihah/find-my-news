@@ -1,3 +1,8 @@
+# React Docs
+
+> [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)
+
+> [Updating Objects in State](https://react.dev/learn/updating-objects-in-state)
 
 ## what does PAGINATION functions means and how it works
 
@@ -119,6 +124,19 @@ true && undefined ?? "foo"; // raises a SyntaxError
 ```
 
 ##  updateMyFavorites() - for add to my favorites function
+
+> `find()` method returns the **first element** in the provided array that satisfies the provided testing function. If no values satisfy the testing function, `undefined` is returned.
+
+**JavaScript Demo: Array.find()**
+
+```javascript
+const array1 = [5, 12, 8, 130, 44];
+
+const found = array1.find(element => element > 10);
+
+console.log(found);
+// Expected output: 12
+```
 
 ```javascript
 const updateMyFavorites = (news) => {

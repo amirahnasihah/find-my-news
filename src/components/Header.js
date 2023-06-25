@@ -52,11 +52,16 @@ export default function Header({ keyword, handleSetKeyword }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmitLogout = () => {};
+  const handleSubmitLogout = () => {
+    navigate("/");
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "grey" }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "plum", color: "rgb(0, 0, 0)" }}
+      >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             {/* LOGO */}
