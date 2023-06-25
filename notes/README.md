@@ -1,3 +1,9 @@
+- [React Docs](#react-docs)
+  - [what does PAGINATION functions means and how it works](#what-does-pagination-functions-means-and-how-it-works)
+  - [other methods for localstorage in react initial state](#other-methods-for-localstorage-in-react-initial-state)
+  - [Nullish coalescing operator (??)](#nullish-coalescing-operator-)
+  - [updateMyFavorites() - for add to my favorites function](#updatemyfavorites---for-add-to-my-favorites-function)
+
 # React Docs
 
 > [Updating Arrays in State](https://react.dev/learn/updating-arrays-in-state)

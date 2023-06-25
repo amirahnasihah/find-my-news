@@ -37,8 +37,27 @@ export default function Home() {
     localStorage.removeItem(LOCALS_STORAGE_KEY);
   };
 
-  const updateMyFavourites = (news) => {
-    console.log("updateMyFavourites");
+  const updateMyFavourites = (newss) => {
+    console.log("updateMyFavourites", newss);
+    const existingFavourites = myFavourites.find(
+      (fav) => fav.name === newss.name
+    );
+
+    if (!existingFavourites) {
+      const newFavourite = setMyFavourites([
+        ...myFavourites,
+        { name: newss.name, ...newss },
+      ]);
+
+      localStorage.setItem(
+        LOCALS_STORAGE_KEY,
+        JSON.stringify([...myFavourites, newFavourite])
+      );
+    } else {
+      alert("Already added!");
+    }
+
+    console.log("updateMyFavourites", updateMyFavourites());
   };
 
   const onLoadMore = () => {

@@ -43,7 +43,10 @@ export default function NewsItem({ news, updateMyFavourites }) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add-to-favorites" onClick={updateMyFavourites}>
+        <IconButton
+          aria-label="add-to-favorites"
+          onClick={() => updateMyFavourites(news)}
+        >
           <BookmarkIcon />
         </IconButton>
         <Button
