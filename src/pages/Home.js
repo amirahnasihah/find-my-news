@@ -37,16 +37,16 @@ export default function Home() {
     localStorage.removeItem(LOCALS_STORAGE_KEY);
   };
 
-  const updateMyFavourites = (newss) => {
-    console.log("updateMyFavourites", newss);
+  const updateMyFavourites = (news) => {
+    console.log("updateMyFavourites", news);
     const existingFavourites = myFavourites.find(
-      (fav) => fav.name === newss.name
+      (fav) => fav.name === news.name
     );
 
     if (!existingFavourites) {
       const newFavourite = setMyFavourites([
         ...myFavourites,
-        { name: newss.name, ...newss },
+        { name: news.name, ...news },
       ]);
 
       localStorage.setItem(

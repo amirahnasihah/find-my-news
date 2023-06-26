@@ -10,6 +10,24 @@ import {
 
 import { Link } from "react-router-dom";
 
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
 export default function Login() {
   const handleSubmitLogin = () => {};
 
@@ -22,34 +40,24 @@ export default function Login() {
         sx={{
           "& .MuiTextField-root": {
             m: 1,
-            width: "25ch",
+            width: "100%",
           },
-          color: "white",
+          color: "black",
+          textAlign: "center",
         }}
       >
-        <Typography component="h1" variant="h4">
-          Sign in
-        </Typography>
         <Box
           component="form"
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
           onSubmit={handleSubmitLogin}
           noValidate
           autoComplete="off"
           className="login-input"
         >
+          <Typography component="h1" variant="h4" sx={{ mb: 2 }}>
+            Sign in
+          </Typography>
           <Tooltip title="Dummy: John" placement="top-end">
-            <TextField
-              required
-              id="outlined-required"
-              label="Username"
-              placeholder="Enter username"
-            />
+            <TextField required id="outlined-required" label="Username" />
           </Tooltip>
           <Tooltip title="Dummy: 12345" placement="top-end">
             <TextField
@@ -60,10 +68,17 @@ export default function Login() {
               autoComplete="current-password"
             />
           </Tooltip>
-
           <Link to="/home">
-            <Button variant="contained">Login</Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Login
+            </Button>
           </Link>
+          <Copyright sx={{ mt: 2 }} />
         </Box>
       </Box>
     </Container>
