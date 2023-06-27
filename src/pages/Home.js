@@ -1,21 +1,21 @@
 import { Box, Grid } from "@mui/material";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import MyFavouritesPanel from "../components/MyFavouritesPanel";
 import DisplayResults from "../components/DisplayResults";
-import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 
 export default function Home() {
   const [keyword, setKeyword] = useState("");
+  const [page, setPage] = useState(4);
   const LOCALS_STORAGE_KEY = "my-favourites";
   const [myFavourites, setMyFavourites] = useState(
     JSON.parse(localStorage.getItem(LOCALS_STORAGE_KEY)) ?? []
   );
-  const [page, setPage] = useState(4);
 
   const handleSetKeyword = (e) => {
+    e.preventDefault();
     setKeyword(e.target.value);
-    console.log("handleSetKeyword:", e.target.value);
   };
 
   useEffect(() => {
@@ -29,12 +29,6 @@ export default function Home() {
       const parsedFavourites = JSON.parse(favouritesFromStorage);
       setMyFavourites(parsedFavourites);
     }
-  };
-
-  const clearMyFavourites = () => {
-    setMyFavourites([]);
-
-    localStorage.removeItem(LOCALS_STORAGE_KEY);
   };
 
   const updateMyFavourites = (news) => {
@@ -56,8 +50,12 @@ export default function Home() {
     } else {
       alert("Already added!");
     }
+  };
 
-    console.log("updateMyFavourites", updateMyFavourites());
+  const clearMyFavourites = () => {
+    setMyFavourites([]);
+
+    localStorage.removeItem(LOCALS_STORAGE_KEY);
   };
 
   const onLoadMore = () => {

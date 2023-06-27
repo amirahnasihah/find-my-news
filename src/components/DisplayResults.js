@@ -6,7 +6,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 export default function DisplayResults({
   page,
   keyword,
-  updateMyFavorites,
+  updateMyFavourites,
   onLoadMore,
 }) {
   const [news, setNews] = useState([]);
@@ -39,7 +39,7 @@ export default function DisplayResults({
         {filteredNewsData.length > 0 ? (
           filteredNewsData.slice(0, page).map((item, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <NewsItem news={item} updateMyFavorites={updateMyFavorites} />
+              <NewsItem news={item} updateMyFavourites={updateMyFavourites} />
             </Grid>
           ))
         ) : (

@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import notfound from "../assets/not-found.png";
 import { Box, Button, Grid, Typography } from "@mui/material";
 
 const ErrorPage = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -37,9 +39,9 @@ const ErrorPage = () => {
         />
       </Grid>
 
-      <Link to="/home" className="link-btn">
+      <Link to={navigate(-1)} className="link-btn">
         <Button variant="contained" sx={{ bgcolor: "black" }}>
-          👉 Home
+          👉 Back
         </Button>
       </Link>
     </Box>
