@@ -18,9 +18,13 @@ export default function MyFavouritesPanel({ myFavourites, clearMyFavourites }) {
         <Typography variant="h6">Favourites</Typography>
       </Badge>
 
-      <Button variant="contained" size="small" onClick={clearMyFavourites}>
+      <OrangeButton
+        variant="contained"
+        size="small"
+        onClick={clearMyFavourites}
+      >
         Clear
-      </Button>
+      </OrangeButton>
 
       <List
         sx={{

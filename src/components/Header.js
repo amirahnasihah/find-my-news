@@ -13,6 +13,7 @@ import logo from "../assets/logo.png";
 import FaceIcon from "@mui/icons-material/Face";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import OrangeButton from "./OrangeButton";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -24,6 +25,7 @@ const Search = styled("div")(({ theme }) => ({
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: "100%",
+
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
     width: "auto",
@@ -113,17 +115,13 @@ export default function Header({ keyword, handleSetKeyword }) {
               sx={{ marginRight: 1, color: "purple" }}
             />
             {isLogoutInProgress ? (
-              <Button sx={{ color: "purple" }} size="small" disabled>
-                <CircularProgress size={20} sx={{ color: "purple" }} />
-              </Button>
+              <OrangeButton size="small" disabled>
+                <CircularProgress size={20} />
+              </OrangeButton>
             ) : (
-              <Button
-                sx={{ color: "purple" }}
-                size="small"
-                onClick={handleSubmitLogout}
-              >
+              <OrangeButton size="small" onClick={handleSubmitLogout}>
                 Logout
-              </Button>
+              </OrangeButton>
             )}
           </Box>
         </Toolbar>

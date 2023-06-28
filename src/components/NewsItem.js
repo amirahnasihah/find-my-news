@@ -50,14 +50,7 @@ export default function NewsItem({ news, updateMyFavourites }) {
         >
           <BookmarkIcon />
         </IconButton>
-        <OrangeButton
-          variant="outlined"
-          size="small"
-          color="secondary"
-          href={url}
-          target="_blank"
-          rel="noopener"
-        >
+        <OrangeButton size="small" href={url} target="_blank" rel="noopener">
           Read more
         </OrangeButton>
       </CardActions>
