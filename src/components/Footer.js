@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 function Footer() {
   return (
     <footer>
-      <img style={{ width: 50 }} src={logo} alt="icon ketupat" />
+      <img style={{ width: 50 }} src={logo} alt="icon" />
 
       <Typography variant="h6">Start creating to see some magic!</Typography>
 
@@ -21,7 +21,7 @@ function Footer() {
         </Link>
         {" || source code can be accessed on "}
         <Link
-          href="https://github.com/amirahnasihah/add-to-fav-simple-app"
+          href="https://github.com/amirahnasihah/find-my-news"
           title="GitHub Add To Fav Mock Api"
           target="_blank"
           style={{ color: "red", textDecorationLine: "none" }}

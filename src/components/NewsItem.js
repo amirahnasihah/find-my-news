@@ -48,7 +48,7 @@ export default function NewsItem({ news, updateMyFavourites }) {
           aria-label="add-to-favorites"
           onClick={() => updateMyFavourites(news)}
         >
-          <BookmarkIcon />
+          <BookmarkIcon sx={{ color: "plum" }} />
         </IconButton>
         <OrangeButton size="small" href={url} target="_blank" rel="noopener">
           Read more

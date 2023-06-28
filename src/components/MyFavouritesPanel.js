@@ -17,7 +17,6 @@ export default function MyFavouritesPanel({ myFavourites, clearMyFavourites }) {
       <Badge badgeContent={myFavourites.length} color="secondary">
         <Typography variant="h6">Favourites</Typography>
       </Badge>
-
       <OrangeButton
         variant="contained"
         size="small"
@@ -25,7 +24,6 @@ export default function MyFavouritesPanel({ myFavourites, clearMyFavourites }) {
       >
         Clear
       </OrangeButton>
-
       <List
         sx={{
           width: "100%",
@@ -37,9 +35,11 @@ export default function MyFavouritesPanel({ myFavourites, clearMyFavourites }) {
           "&::-webkit-scrollbar": {
             width: "8px",
           },
+
           "&::-webkit-scrollbar-track": {
             backgroundColor: "transparent",
           },
+
           "&::-webkit-scrollbar-thumb": {
             backgroundColor: "rgba(0, 0, 0, 0.2)",
             borderRadius: "4px",
@@ -61,7 +61,7 @@ export default function MyFavouritesPanel({ myFavourites, clearMyFavourites }) {
                   >
                     <Typography variant="body2">
                       <span role="img" aria-label="emoji">
-                        👉{" "}
+                        👉
                       </span>
                       {item.title}
                     </Typography>

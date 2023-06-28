@@ -1,11 +1,4 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Chip,
-  CircularProgress,
-  Toolbar,
-} from "@mui/material";
+import { AppBar, Box, Chip, CircularProgress, Toolbar } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -65,7 +58,7 @@ export default function Header({ keyword, handleSetKeyword }) {
     setIsLogoutInProgress(true);
 
     setTimeout(() => {
-      setIsLoggedIn(false);
+      setIsLoggedIn(!isLoggedIn);
       setIsLogoutInProgress(false);
       setUserName("");
       navigate("/");

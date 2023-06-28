@@ -1,7 +1,6 @@
 import {
   Alert,
   Box,
-  Button,
   Container,
   CssBaseline,
   LinearProgress,
@@ -11,8 +10,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import OrangeButton from "../components/OrangeButton";
 
 function Copyright(props) {
   return (
@@ -98,10 +99,15 @@ function Login() {
           autoComplete="off"
           className="login-input"
         >
-          <Typography component="h1" variant="h4" sx={{ mb: 2 }}>
-            Sign in
+          <Typography
+            component="h1"
+            variant="h5"
+            sx={{ mb: 2, color: "darkorange", fontFamily: "monospace" }}
+          >
+            <TravelExploreIcon sx={{ color: "purple" }} />
+            Find My News App
           </Typography>
-          <Tooltip title="Dummy: John" placement="top-end">
+          <Tooltip title="John" placement="top-end">
             <TextField
               required
               id="outlined-required"
@@ -110,7 +116,7 @@ function Login() {
               onChange={(e) => setUserName(e.target.value)}
             />
           </Tooltip>
-          <Tooltip title="Dummy: 12345" placement="top-end">
+          <Tooltip title="12345" placement="top-end">
             <TextField
               required
               id="outlined-password-input"
@@ -121,16 +127,16 @@ function Login() {
               autoComplete="current-password"
             />
           </Tooltip>
-          <Button
+          <OrangeButton
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
             Login
-          </Button>
+          </OrangeButton>
 
-          {isLoginInProgress && <LinearProgress />}
+          {isLoginInProgress && <LinearProgress color="secondary" />}
           <Copyright sx={{ m: 2 }} />
           <Typography
             sx={{ fontSize: 9, color: "grey", fontFamily: "monospace" }}
