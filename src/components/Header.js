@@ -1,4 +1,11 @@
-import { AppBar, Box, Chip, CircularProgress, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Chip,
+  CircularProgress,
+  Toolbar,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -108,9 +115,9 @@ export default function Header({ keyword, handleSetKeyword }) {
               sx={{ marginRight: 1, color: "purple" }}
             />
             {isLogoutInProgress ? (
-              <OrangeButton size="small" disabled>
-                <CircularProgress size={20} />
-              </OrangeButton>
+              <Button size="small" disabled variant="outlined">
+                <CircularProgress size={20} color="secondary" />
+              </Button>
             ) : (
               <OrangeButton size="small" onClick={handleSubmitLogout}>
                 Logout
