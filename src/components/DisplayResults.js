@@ -10,9 +10,7 @@ export default function DisplayResults({
   onLoadMore,
 }) {
   const [news, setNews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [searchParam] = useState(["content", "title"]);
-  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     getNews();
@@ -50,7 +48,7 @@ export default function DisplayResults({
           </Grid>
         )}
       </Grid>
-      <Box sx={{ display: "flex", justifyContent: "center", margin: 5 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
         <Button
           variant="contained"
           size="small"

@@ -1,4 +1,11 @@
-import { AppBar, Box, Button, Chip, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Chip,
+  CircularProgress,
+  Toolbar,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -37,7 +44,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -50,13 +56,24 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Header({ keyword, handleSetKeyword }) {
   const [userName, setUserName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLogoutInProgress, setIsLogoutInProgress] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmitLogout = () => {
+    setIsLogoutInProgress(true);
+
     setTimeout(() => {
+      setIsLoggedIn(false);
+      setIsLogoutInProgress(false);
+      setUserName("");
       navigate("/");
     }, 3000);
   };
+
+  useEffect(() => {
+    setUserName(JSON.parse(localStorage.getItem("userName")));
+    setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -65,7 +82,7 @@ export default function Header({ keyword, handleSetKeyword }) {
         sx={{ backgroundColor: "plum", color: "rgb(0, 0, 0)" }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "center", color: "purple" }}>
             {/* LOGO */}
             SEHA
             <img
@@ -91,13 +108,23 @@ export default function Header({ keyword, handleSetKeyword }) {
           {/* LOGOUT + CHIP */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Chip
-              icon={<FaceIcon style={{ color: "pink" }} />}
+              icon={<FaceIcon style={{ color: "purple" }} />}
               label={userName}
-              sx={{ marginRight: 1, color: "white" }}
+              sx={{ marginRight: 1, color: "purple" }}
             />
-            <Button color="inherit" size="small" onClick={handleSubmitLogout}>
-              Logout
-            </Button>
+            {isLogoutInProgress ? (
+              <Button sx={{ color: "purple" }} size="small" disabled>
+                <CircularProgress size={20} sx={{ color: "purple" }} />
+              </Button>
+            ) : (
+              <Button
+                sx={{ color: "purple" }}
+                size="small"
+                onClick={handleSubmitLogout}
+              >
+                Logout
+              </Button>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

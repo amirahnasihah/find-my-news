@@ -78,43 +78,29 @@ export default function Home() {
         flexGrow: 1,
       }}
     >
-      {" "}
       <Grid container spacing={2}>
-        {" "}
         <Grid item xs={12} md={12}>
-          {" "}
-          <Header keyword={keyword} handleSetKeyword={handleSetKeyword} />{" "}
-        </Grid>{" "}
-        <Grid
-          item
-          xs={4}
-          md={3}
-          style={{
-            backgroundColor: "white",
-            overflowY: "scroll",
-          }}
-        >
-          {" "}
+          <Header keyword={keyword} handleSetKeyword={handleSetKeyword} />
+        </Grid>
+        <Grid item xs={4} md={3}>
           <MyFavouritesPanel
             myFavourites={myFavourites}
             handleSetKeyword={handleSetKeyword}
             clearMyFavourites={clearMyFavourites}
-          />{" "}
-        </Grid>{" "}
+          />
+        </Grid>
         <Grid item xs={8} md={9}>
-          {" "}
           <DisplayResults
             page={page}
             keyword={keyword}
             updateMyFavourites={updateMyFavourites}
             onLoadMore={onLoadMore}
-          />{" "}
-        </Grid>{" "}
+          />
+        </Grid>
         <Grid item xs={12} md={12}>
-          {" "}
-          <Footer />{" "}
-        </Grid>{" "}
-      </Grid>{" "}
+          <Footer />
+        </Grid>
+      </Grid>
     </Box>
   );
 }

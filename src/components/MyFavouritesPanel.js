@@ -11,16 +11,9 @@ import {
 } from "@mui/material";
 import OrangeButton from "./OrangeButton";
 
-export default function MyFavouritesPanel({
-  myFavourites,
-  handleSetKeyword,
-  clearMyFavourites,
-}) {
+export default function MyFavouritesPanel({ myFavourites, clearMyFavourites }) {
   return (
-    <Box
-      sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-      className="my-favourites-panel"
-    >
+    <Box className="my-favourites-panel">
       <Badge badgeContent={myFavourites.length} color="secondary">
         <Typography variant="h6">Favourites</Typography>
       </Badge>
@@ -29,34 +22,52 @@ export default function MyFavouritesPanel({
         Clear
       </Button>
 
-      <nav aria-label="favourites list">
+      <List
+        sx={{
+          width: "100%",
+          maxWidth: 360,
+          bgcolor: "background.paper",
+          maxHeight: 400,
+          overflowY: "scroll",
+          scrollbarWidth: "thin",
+          "&::-webkit-scrollbar": {
+            width: "8px",
+          },
+          "&::-webkit-scrollbar-track": {
+            backgroundColor: "transparent",
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "rgba(0, 0, 0, 0.2)",
+            borderRadius: "4px",
+          },
+        }}
+        aria-label="favourites list"
+      >
         {myFavourites.map((item) => (
-          <List key={item.id}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText
-                  primary={
-                    <Link
-                      href={item.url}
-                      color="inherit"
-                      underline="none"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      <Typography variant="body2">
-                        <span role="img" aria-label="emoji">
-                          👉{" "}
-                        </span>
-                        {item.title}
-                      </Typography>
-                    </Link>
-                  }
-                />
-              </ListItemButton>
-            </ListItem>
-          </List>
+          <ListItem disablePadding key={item.id}>
+            <ListItemButton>
+              <ListItemText
+                primary={
+                  <Link
+                    href={item.url}
+                    color="inherit"
+                    underline="none"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <Typography variant="body2">
+                      <span role="img" aria-label="emoji">
+                        👉{" "}
+                      </span>
+                      {item.title}
+                    </Typography>
+                  </Link>
+                }
+              />
+            </ListItemButton>
+          </ListItem>
         ))}
-      </nav>
+      </List>
     </Box>
   );
 }

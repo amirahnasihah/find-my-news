@@ -131,7 +131,12 @@ function Login() {
           </Button>
 
           {isLoginInProgress && <LinearProgress />}
-          <Copyright sx={{ mt: 2 }} />
+          <Copyright sx={{ m: 2 }} />
+          <Typography
+            sx={{ fontSize: 9, color: "grey", fontFamily: "monospace" }}
+          >
+            Dummy login: John | 12345
+          </Typography>
         </Box>
       </Box>
       {errorMessage && (
