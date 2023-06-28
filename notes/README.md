@@ -3,6 +3,7 @@
   - [other methods for localstorage in react initial state](#other-methods-for-localstorage-in-react-initial-state)
   - [Nullish coalescing operator (??)](#nullish-coalescing-operator-)
   - [updateMyFavorites() - for add to my favorites function](#updatemyfavorites---for-add-to-my-favorites-function)
+  - [updateMyFavourites - id is null in the localStorage database](#updatemyfavourites---id-is-null-in-the-localstorage-database)
 
 # React Docs
 
@@ -177,3 +178,72 @@ The code you provided defines an `updateMyFavorites` function that is responsibl
 5. If `existingFavorite` is truthy, it means the news item is already a favorite, and a success message is shown using a toast notification (assuming `toast.success` is a function provided by a toast library).
 
 Overall, this code updates the `myFavorites` state based on the provided `news` object, adds the new favorite to the array if it doesn't already exist, and stores the updated array in `localStorage`. If the news item is already a favorite, it displays a success message using a toast notification.
+
+## updateMyFavourites - id is null in the localStorage database
+
+**ORIGINAL - incorrect code**
+
+```javascript
+const updateMyFavourites = (news) => {
+    console.log("updateMyFavourites:", news);
+    const existingFavourites = myFavourites.find(
+      (fav) => fav.name === news.name
+    );
+
+    if (!existingFavourites) {
+      const newFavourite = setMyFavourites([
+        ...myFavourites,
+        { name: news.name, ...news },
+      ]);
+
+      localStorage.setItem(
+        LOCALS_STORAGE_KEY,
+        JSON.stringify([...myFavourites, newFavourite])
+      );
+    } else {
+      alert("Already added!");
+    }
+  };
+```
+
+**/// -- Observe below code changes -- ///**
+
+```javascript
+// OTHER ALT //
+setMyFavourites([...myFavourites, { name: news.name, ...news }]);
+
+localStorage.setItem(LOCALS_STORAGE_KEY, JSON.stringify([...myFavourites, { name: news.name, ...news }]));
+
+
+// BEFORE - incorrect code //
+const newFavourite = setMyFavourites([...myFavourites, {name: news.name, ...news}]);
+
+localStorage.setItem(LOCALS_STORAGE_KEY, JSON.stringify([...myFavourites, newFavourite])); // incorrect code at this point `newFavourite` append method
+
+
+// AFTER //
+const newFavourite = { name: news.name, ...news };
+const updatedFavourites = [...myFavourites, newFavourite];
+setMyFavourites(updatedFavourites);
+
+localStorage.setItem(LOCALS_STORAGE_KEY, JSON.stringify(updatedFavourites));
+```
+
+**AFTER - correct code**
+
+```javascript
+const updateMyFavourites = (news) => {
+  console.log("updateMyFavourites:", news);
+  const existingFavourites = myFavourites.find((fav) => fav.name === news.name);
+
+  if (!existingFavourites) {
+    const newFavourite = { name: news.name, ...news };
+    const updatedFavourites = [...myFavourites, newFavourite];
+    setMyFavourites(updatedFavourites);
+
+    localStorage.setItem(LOCALS_STORAGE_KEY, JSON.stringify(updatedFavourites));
+  } else {
+    alert("Already added!");
+  }
+};
+```

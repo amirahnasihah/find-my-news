@@ -1,7 +1,20 @@
-export default function OrangeButton() {
-  return (
-    <div>
-      <h2>OrangeButton</h2>
-    </div>
-  );
-}
+import styled from "@emotion/styled";
+import { Button } from "@mui/material";
+
+const useStyles = styled((Button) => ({
+  root: {
+    color: "#fff",
+    backgroundColor: "#F38181",
+    "&:hover": {
+      backgroundColor: "#E65F5F",
+    },
+  },
+}));
+
+const OrangeButton = (props) => {
+  const classes = useStyles();
+
+  return <Button className={classes.root} {...props} />;
+};
+
+export default OrangeButton;

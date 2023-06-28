@@ -1,12 +1,15 @@
 import {
+  Badge,
   Box,
-  Divider,
+  Button,
+  Link,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   Typography,
 } from "@mui/material";
+import OrangeButton from "./OrangeButton";
 
 export default function MyFavouritesPanel({
   myFavourites,
@@ -14,8 +17,18 @@ export default function MyFavouritesPanel({
   clearMyFavourites,
 }) {
   return (
-    <Box sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      <Typography variant="h6">Favourites: {myFavourites.length}</Typography>
+    <Box
+      sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+      className="my-favourites-panel"
+    >
+      <Badge badgeContent={myFavourites.length} color="secondary">
+        <Typography variant="h6">Favourites</Typography>
+      </Badge>
+
+      <Button variant="contained" size="small" onClick={clearMyFavourites}>
+        Clear
+      </Button>
+
       <nav aria-label="favourites list">
         {myFavourites.map((item) => (
           <List key={item.id}>
@@ -23,20 +36,20 @@ export default function MyFavouritesPanel({
               <ListItemButton>
                 <ListItemText
                   primary={
-                    <a
+                    <Link
                       href={item.url}
+                      color="inherit"
+                      underline="none"
                       target="_blank"
-                      rel="noopener noreferrer"
-                      className="link"
-                      onClick={handleSetKeyword}
+                      rel="noopener"
                     >
-                      <Typography variant="caption">
+                      <Typography variant="body2">
                         <span role="img" aria-label="emoji">
-                          👉
+                          👉{" "}
                         </span>
                         {item.title}
                       </Typography>
-                    </a>
+                    </Link>
                   }
                 />
               </ListItemButton>

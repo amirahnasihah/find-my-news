@@ -33,3 +33,11 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.my-favourites-panel {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

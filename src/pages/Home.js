@@ -1,4 +1,5 @@
 import { Box, Grid } from "@mui/material";
+
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import MyFavouritesPanel from "../components/MyFavouritesPanel";
@@ -32,20 +33,29 @@ export default function Home() {
   };
 
   const updateMyFavourites = (news) => {
-    console.log("updateMyFavourites", news);
+    // console.log("updateMyFavourites:", news);
     const existingFavourites = myFavourites.find(
       (fav) => fav.name === news.name
     );
 
     if (!existingFavourites) {
-      const newFavourite = setMyFavourites([
+      setMyFavourites([
         ...myFavourites,
-        { name: news.name, ...news },
+        {
+          name: news.name,
+          ...news,
+        },
       ]);
 
       localStorage.setItem(
         LOCALS_STORAGE_KEY,
-        JSON.stringify([...myFavourites, newFavourite])
+        JSON.stringify([
+          ...myFavourites,
+          {
+            name: news.name,
+            ...news,
+          },
+        ])
       );
     } else {
       alert("Already added!");
@@ -63,12 +73,18 @@ export default function Home() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+      }}
+    >
+      {" "}
       <Grid container spacing={2}>
+        {" "}
         <Grid item xs={12} md={12}>
-          <Header keyword={keyword} handleSetKeyword={handleSetKeyword} />
-        </Grid>
-
+          {" "}
+          <Header keyword={keyword} handleSetKeyword={handleSetKeyword} />{" "}
+        </Grid>{" "}
         <Grid
           item
           xs={4}
@@ -78,26 +94,27 @@ export default function Home() {
             overflowY: "scroll",
           }}
         >
+          {" "}
           <MyFavouritesPanel
             myFavourites={myFavourites}
             handleSetKeyword={handleSetKeyword}
             clearMyFavourites={clearMyFavourites}
-          />
-        </Grid>
-
+          />{" "}
+        </Grid>{" "}
         <Grid item xs={8} md={9}>
+          {" "}
           <DisplayResults
             page={page}
             keyword={keyword}
             updateMyFavourites={updateMyFavourites}
             onLoadMore={onLoadMore}
-          />
-        </Grid>
-
+          />{" "}
+        </Grid>{" "}
         <Grid item xs={12} md={12}>
-          <Footer />
-        </Grid>
-      </Grid>
+          {" "}
+          <Footer />{" "}
+        </Grid>{" "}
+      </Grid>{" "}
     </Box>
   );
 }

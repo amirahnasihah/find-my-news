@@ -53,7 +53,9 @@ export default function Header({ keyword, handleSetKeyword }) {
   const navigate = useNavigate();
 
   const handleSubmitLogout = () => {
-    navigate("/");
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
   };
 
   return (

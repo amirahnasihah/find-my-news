@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import OrangeButton from "./OrangeButton";
 
 export default function NewsItem({ news, updateMyFavourites }) {
   const { name, title, urlToImage, publishedAt, url, content } = news;
@@ -49,7 +50,7 @@ export default function NewsItem({ news, updateMyFavourites }) {
         >
           <BookmarkIcon />
         </IconButton>
-        <Button
+        <OrangeButton
           variant="outlined"
           size="small"
           color="secondary"
@@ -58,7 +59,7 @@ export default function NewsItem({ news, updateMyFavourites }) {
           rel="noopener"
         >
           Read more
-        </Button>
+        </OrangeButton>
       </CardActions>
     </Card>
   );
