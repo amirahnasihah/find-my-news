@@ -20,7 +20,7 @@ export default function NewsItem({ news, updateMyFavourites }) {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: "plum" }} aria-label="avatar">
-            {name.charAt(0).toUpperCase()}
+            {news.source.name.charAt(0).toUpperCase()}
           </Avatar>
         }
         title={title.slice(0, 25)}

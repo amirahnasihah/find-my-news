@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../api/newsData";
 import NewsItem from "./NewsItem";
 import { Box, Button, Grid, Typography } from "@mui/material";
+import axios from "axios";
 
 export default function DisplayResults({
   page,
@@ -11,6 +12,8 @@ export default function DisplayResults({
 }) {
   const [news, setNews] = useState([]);
   const [searchParam] = useState(["content", "title"]);
+  const API_KEYWORD = process.env.REACT_APP_API_KEY;
+  console.log("This is api_keyword:", API_KEYWORD);
 
   useEffect(() => {
     getNews();
@@ -18,8 +21,10 @@ export default function DisplayResults({
 
   const getNews = async () => {
     try {
-      const response = await api.get(`/articles`);
-      setNews(response.data);
+      const response = await api.get("/");
+
+      console.log("response:", response);
+      setNews(response.data.articles);
     } catch (error) {
       console.error(error);
     }
