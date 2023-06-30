@@ -12,7 +12,9 @@ export default function DisplayResults({
 }) {
   const [news, setNews] = useState([]);
   const [searchParam] = useState(["content", "title"]);
-  const API_KEYWORD = process.env.REACT_APP_API_KEY;
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const API_KEYWORD = process.env.REACT_APP_KEYWORD;
+
   console.log("This is api_keyword:", API_KEYWORD);
 
   useEffect(() => {
@@ -21,7 +23,9 @@ export default function DisplayResults({
 
   const getNews = async () => {
     try {
-      const response = await api.get("/");
+      const response = await axios.get(
+        `https://newsapi.org/v2/everything?q=${API_KEYWORD}&apiKey=${API_KEY}`
+      );
 
       console.log("response:", response);
       setNews(response.data.articles);

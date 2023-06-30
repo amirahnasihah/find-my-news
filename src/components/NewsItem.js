@@ -7,13 +7,14 @@ import {
   CardHeader,
   CardMedia,
   IconButton,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import OrangeButton from "./OrangeButton";
 
 export default function NewsItem({ news, updateMyFavourites }) {
-  const { name, title, urlToImage, publishedAt, url, content } = news;
+  const { title, urlToImage, publishedAt, url, description } = news;
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -26,7 +27,14 @@ export default function NewsItem({ news, updateMyFavourites }) {
         title={title.slice(0, 25)}
         subheader={new Date(publishedAt).toLocaleDateString("en-MY")}
       />
-      <CardMedia component="img" height="194" image={urlToImage} alt={title} />
+      <Tooltip title={title}>
+        <CardMedia
+          component="img"
+          height="194"
+          image={urlToImage}
+          alt={title}
+        />
+      </Tooltip>
       <CardContent sx={{ height: 100 }}>
         <Typography
           variant="body2"
@@ -40,7 +48,7 @@ export default function NewsItem({ news, updateMyFavourites }) {
             cursor: "default",
           }}
         >
-          {content}
+          {description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

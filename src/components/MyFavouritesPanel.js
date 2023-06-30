@@ -7,6 +7,7 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import OrangeButton from "./OrangeButton";
@@ -47,8 +48,8 @@ export default function MyFavouritesPanel({ myFavourites, clearMyFavourites }) {
         }}
         aria-label="favourites list"
       >
-        {myFavourites.map((item) => (
-          <ListItem disablePadding key={item.id}>
+        {myFavourites.map((item, index) => (
+          <ListItem disablePadding key={index}>
             <ListItemButton>
               <ListItemText
                 primary={
@@ -59,12 +60,14 @@ export default function MyFavouritesPanel({ myFavourites, clearMyFavourites }) {
                     target="_blank"
                     rel="noopener"
                   >
-                    <Typography variant="body2">
-                      <span role="img" aria-label="emoji">
-                        👉
-                      </span>
-                      {item.title}
-                    </Typography>
+                    <Tooltip title={item.title}>
+                      <Typography variant="body2">
+                        <span role="img" aria-label="emoji">
+                          👉
+                        </span>
+                        {item.title.slice(0, 100) + "..."}
+                      </Typography>
+                    </Tooltip>
                   </Link>
                 }
               />

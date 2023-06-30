@@ -34,15 +34,13 @@ export default function Home() {
 
   const updateMyFavourites = (news) => {
     // console.log("updateMyFavourites:", news);
-    const existingFavourites = myFavourites.find(
-      (fav) => fav.name === news.name
-    );
+    const existingFavourites = myFavourites.find((fav) => fav.url === news.url);
 
     if (!existingFavourites) {
       setMyFavourites([
         ...myFavourites,
         {
-          name: news.name,
+          url: news.url,
           ...news,
         },
       ]);
