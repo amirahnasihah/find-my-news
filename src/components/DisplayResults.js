@@ -27,7 +27,7 @@ export default function DisplayResults({
         `https://newsapi.org/v2/everything?q=${API_KEYWORD}&apiKey=${API_KEY}`
       );
 
-      console.log("response:", response);
+      // console.log("response:", response);
       setNews(response.data.articles);
     } catch (error) {
       console.error(error);
