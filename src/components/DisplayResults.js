@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import api from "../api/newsData";
 import NewsItem from "./NewsItem";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import axios from "axios";
@@ -15,24 +14,22 @@ export default function DisplayResults({
   const API_KEY = process.env.REACT_APP_API_KEY;
   const API_KEYWORD = process.env.REACT_APP_KEYWORD;
 
-  console.log("This is api_keyword:", API_KEYWORD);
+  // console.log("This is api_keyword:", API_KEYWORD);
 
   useEffect(() => {
+    const getNews = async () => {
+      try {
+        const response = await axios.get(
+          `https://newsapi.org/v2/everything?q=${API_KEYWORD}&apiKey=${API_KEY}`
+        );
+        setNews(response.data.articles);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
     getNews();
   }, []);
-
-  const getNews = async () => {
-    try {
-      const response = await axios.get(
-        `https://newsapi.org/v2/everything?q=${API_KEYWORD}&apiKey=${API_KEY}`
-      );
-
-      // console.log("response:", response);
-      setNews(response.data.articles);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const filteredNewsData = news.filter((item) => {
     return searchParam.some((param) => {

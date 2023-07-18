@@ -1,10 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import notfound from "../assets/not-found.png";
 import { Box, Button, Grid, Typography } from "@mui/material";
 
 const ErrorPage = () => {
-  const navigate = useNavigate();
-
   return (
     <Box
       sx={{
@@ -19,7 +17,7 @@ const ErrorPage = () => {
         Oops!
       </Typography>
       <Typography variant="overline" gutterBottom>
-        That page cannot be found
+        Sorry, an unexpected error has occurred.
       </Typography>
       <Grid
         item
@@ -39,7 +37,7 @@ const ErrorPage = () => {
         />
       </Grid>
 
-      <Link to={navigate(-1)} className="link-btn">
+      <Link to="/" className="link-btn">
         <Button variant="contained" sx={{ bgcolor: "black" }}>
           👉 Back
         </Button>

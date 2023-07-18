@@ -1,18 +1,33 @@
-import { Box, Grid } from "@mui/material";
-
 import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { Box, Grid } from "@mui/material";
 import Header from "../components/Header";
 import MyFavouritesPanel from "../components/MyFavouritesPanel";
 import DisplayResults from "../components/DisplayResults";
 import Footer from "../components/Footer";
 
 export default function Home() {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    JSON.parse(localStorage.getItem("isLoggedIn")) || false
+  );
   const [keyword, setKeyword] = useState("");
   const [page, setPage] = useState(4);
-  const LOCALS_STORAGE_KEY = "my-favourites";
+  const LOCAL_STORAGE_KEY = "my-favourites";
   const [myFavourites, setMyFavourites] = useState(
-    JSON.parse(localStorage.getItem(LOCALS_STORAGE_KEY)) ?? []
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []
   );
+
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      if (!isLoggedIn) {
+        navigate("/", { replace: true });
+      }
+    };
+
+    checkLoginStatus();
+  }, [navigate]);
 
   const handleSetKeyword = (e) => {
     e.preventDefault();
@@ -20,17 +35,17 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const getLocalStorage = () => {
+      const favouritesFromStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
+
+      if (favouritesFromStorage) {
+        const parsedFavourites = JSON.parse(favouritesFromStorage);
+        setMyFavourites(parsedFavourites);
+      }
+    };
+
     getLocalStorage();
   }, []);
-
-  const getLocalStorage = () => {
-    const favouritesFromStorage = localStorage.getItem(LOCALS_STORAGE_KEY);
-
-    if (favouritesFromStorage) {
-      const parsedFavourites = JSON.parse(favouritesFromStorage);
-      setMyFavourites(parsedFavourites);
-    }
-  };
 
   const updateMyFavourites = (news) => {
     // console.log("updateMyFavourites:", news);
@@ -40,17 +55,15 @@ export default function Home() {
       setMyFavourites([
         ...myFavourites,
         {
-          url: news.url,
           ...news,
         },
       ]);
 
       localStorage.setItem(
-        LOCALS_STORAGE_KEY,
+        LOCAL_STORAGE_KEY,
         JSON.stringify([
           ...myFavourites,
           {
-            name: news.name,
             ...news,
           },
         ])
@@ -63,12 +76,16 @@ export default function Home() {
   const clearMyFavourites = () => {
     setMyFavourites([]);
 
-    localStorage.removeItem(LOCALS_STORAGE_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
   };
 
   const onLoadMore = () => {
     setPage((prevPage) => prevPage + 8);
   };
+
+  if (!isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <Box

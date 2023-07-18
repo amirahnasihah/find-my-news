@@ -11,7 +11,7 @@ function Footer() {
       <Typography variant="caption">
         {"made by "}
         <Link
-          href="http://amrhnshh-minimalist.vercel.app/"
+          href="http://amirahnasihah.vercel.app/"
           rel="website"
           title="Amirah Nasihah"
           target="_blank"
@@ -19,7 +19,7 @@ function Footer() {
         >
           amirahnasihah
         </Link>
-        {" || source code can be accessed on "}
+        {" || source code on "}
         <Link
           href="https://github.com/amirahnasihah/find-my-news"
           title="GitHub Add To Fav Mock Api"

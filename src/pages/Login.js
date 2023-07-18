@@ -4,15 +4,15 @@ import {
   Container,
   CssBaseline,
   LinearProgress,
+  Link,
   Snackbar,
   TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
-
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import OrangeButton from "../components/OrangeButton";
 
 function Copyright(props) {
@@ -23,9 +23,14 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      {"amrhnshh © "}
+      <Link
+        style={{ color: "orange" }}
+        href="https://amirahnasihah.vercel.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Website
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -33,26 +38,43 @@ function Copyright(props) {
   );
 }
 
-function Login() {
+export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    JSON.parse(localStorage.getItem("isLoggedIn")) || false
+  );
+
   const [isLoginInProgress, setIsLoginInProgress] = useState(false);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+      if (isLoggedIn) {
+        navigate("/home", { replace: true });
+      }
+    };
+
+    checkLoginStatus();
+  }, [navigate]);
 
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     setIsLoginInProgress(true);
     setIsLoggedIn(false);
     setErrorMessage("");
+    setOpen(true);
 
     setTimeout(() => {
       if (userName === "John" && password === "12345") {
-        localStorage.setItem("isLoggedIn", JSON.stringify(true));
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("userName", JSON.stringify(userName));
         navigate("/home");
-        setErrorMessage("");
+        setErrorMessage(false);
       } else if (userName === "" || password === "") {
         setErrorMessage("Please fill in all the details");
         setIsLoggedIn(false);
@@ -66,7 +88,7 @@ function Login() {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/home">Home</Navigate>;
+    return <Navigate to="/home" replace />;
   }
 
   const handleClose = (event, reason) => {
@@ -74,7 +96,7 @@ function Login() {
       return;
     }
 
-    setErrorMessage("");
+    setOpen(false);
   };
 
   return (
@@ -147,7 +169,7 @@ function Login() {
       </Box>
       {errorMessage && (
         <Snackbar
-          open={!!errorMessage}
+          open={open}
           autoHideDuration={6000}
           onClose={handleClose}
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
@@ -158,5 +180,3 @@ function Login() {
     </Container>
   );
 }
-
-export default Login;

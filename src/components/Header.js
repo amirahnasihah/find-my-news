@@ -63,12 +63,15 @@ export default function Header({ keyword, handleSetKeyword }) {
 
   const handleSubmitLogout = () => {
     setIsLogoutInProgress(true);
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userName");
 
     setTimeout(() => {
       setIsLoggedIn(!isLoggedIn);
       setIsLogoutInProgress(false);
       setUserName("");
       navigate("/");
+      alert("Logged out");
     }, 3000);
   };
 
@@ -76,6 +79,12 @@ export default function Header({ keyword, handleSetKeyword }) {
     setUserName(JSON.parse(localStorage.getItem("userName")));
     setIsLoggedIn(JSON.parse(localStorage.getItem("isLoggedIn")));
   }, []);
+
+  // to log the values of isLoggedIn and userName whenever either of them changes
+  useEffect(() => {
+    console.log("isLoggedIn:", isLoggedIn);
+    console.log("userName:", userName);
+  }, [isLoggedIn, userName]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
