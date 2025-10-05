@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(
+  const [isLoggedIn] = useState(
     JSON.parse(localStorage.getItem("isLoggedIn")) || false
   );
   const [keyword, setKeyword] = useState("");

@@ -29,7 +29,7 @@ export default function DisplayResults({
     };
 
     getNews();
-  }, []);
+  }, [API_KEYWORD, API_KEY]);
 
   const filteredNewsData = news.filter((item) => {
     return searchParam.some((param) => {
@@ -41,8 +41,8 @@ export default function DisplayResults({
     <Box>
       <Grid container spacing={2}>
         {filteredNewsData.length > 0 ? (
-          filteredNewsData.slice(0, page).map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+          filteredNewsData.slice(0, page).map((item) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={item.url}>
               <NewsItem news={item} updateMyFavourites={updateMyFavourites} />
             </Grid>
           ))
