@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import { Navigate, useNavigate } from "react-router-dom";
 import OrangeButton from "../components/OrangeButton";
+const website = process.env.REACT_APP_AMRHNSHH;
 
 function Copyright(props) {
   return (
@@ -26,7 +27,7 @@ function Copyright(props) {
       {"amrhnshh © "}
       <Link
         style={{ color: "orange" }}
-        href="https://amirahnasihah.vercel.app/"
+        href={website}
         target="_blank"
         rel="noopener noreferrer"
       >
