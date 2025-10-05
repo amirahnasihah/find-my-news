@@ -1,5 +1,6 @@
 import { Typography, Link } from "@mui/material";
 import logo from "../assets/logo.png";
+const website = process.env.REACT_APP_AMRHNSHH;
 
 function Footer() {
   return (
@@ -11,7 +12,7 @@ function Footer() {
       <Typography variant="caption">
         {"made by "}
         <Link
-          href="http://amirahnasihah.vercel.app/"
+          href={website}
           rel="website"
           title="Amirah Nasihah"
           target="_blank"
